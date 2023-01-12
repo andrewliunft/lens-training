@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Geo&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bakbak+One&family=Geo&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+.socialicon:hover {
+  filter: invert(53%) sepia(68%) saturate(434%) hue-rotate(299deg)
+    brightness(101%) contrast(94%);
+}
