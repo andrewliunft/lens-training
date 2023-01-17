@@ -14,6 +14,9 @@ import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { mainnet, polygon } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
+import { LensProvider } from "../context/LensContext";
+import { ApolloProvider } from "@apollo/client";
+import { apolloClient } from "../constants/lensConstants";
 
 import * as React from "react";
 
@@ -50,17 +53,21 @@ export default function App({ Component, pageProps }) {
       </Head>
       <ChakraProvider>
         <WagmiConfig client={wagmiClient}>
-          <RainbowKitProvider
-            chains={chains}
-            theme={midnightTheme()}
-            initialChainId={mainnet}
-          >
-            <ThemeProvider enableSystem={true} attribute="class">
-              <Navbar className="z-1" />
-              <Component className="z-2" {...pageProps} />
-              <Footer />
-            </ThemeProvider>
-          </RainbowKitProvider>
+          <ApolloProvider client={apolloClient}>
+            <LensProvider>
+              <RainbowKitProvider
+                chains={chains}
+                theme={midnightTheme()}
+                initialChainId={mainnet}
+              >
+                <ThemeProvider enableSystem={true} attribute="class">
+                  <Navbar className="z-1" />
+                  <Component className="z-2" {...pageProps} />
+                  <Footer />
+                </ThemeProvider>
+              </RainbowKitProvider>
+            </LensProvider>
+          </ApolloProvider>
         </WagmiConfig>
       </ChakraProvider>
     </div>
